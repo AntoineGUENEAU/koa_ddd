@@ -1,2 +1,5 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
+// import {ProductRepositoryInterface} from "../../core/domain/products/productRepositoryInterface";
+//
+// export type ConfigType = {
+//     productRepository: ProductRepositoryInterface,
+// };

@@ -1,36 +1,34 @@
-import {ProductDto} from "../../../core/domain/products/product";
-import {usecase_list} from "../../../core/useCases/products/list";
-import {usecase_create} from "../../../core/useCases/products/create";
-import {usecase_show} from "../../../core/useCases/products/show";
-import {usecase_update} from "../../../core/useCases/products/update";
-import {ProductRepositoryInterface} from "../../../core/domain/products/productRepositoryInterface";
-import {Config} from "../../config/Config";
+import {Product, ProductDto} from "../../../core/domain/products/product";
 import {Context} from "koa";
-
-//Voir si il existe des modules js equivalent au service container sur Laravel.
-const repository: ProductRepositoryInterface = Config.productRepository;
+import {ListProducts} from "../../../core/useCases/products/list";
+import {container} from "../../../container";
+import {CreateProduct} from "../../../core/useCases/products/create";
+import {UpdateProduct} from "../../../core/useCases/products/update";
+import {ShowProduct} from "../../../core/useCases/products/show";
 
 export async function list(ctx: Context): Promise<void>{
-    ctx.body = { products: usecase_list(repository) }
+    const service: ListProducts = container.resolve(ListProducts);
+    ctx.body = { products: await service.invoke() as Product[] }
 }
 
 export async function show(ctx: Context): Promise<void>{
+    const service: ShowProduct = container.resolve(ShowProduct);
     const id = ctx.params.id;
-    const product = await usecase_show(repository, id);
+    const product: Product|null = await service.invoke(id);
     if (!product){
         ctx.throw(404, 'invalid product id')
     }
     ctx.body = { product }
 }
 
-//Voir pour verfier la request
 export async function create(ctx: Context): Promise<void>{
-    const product = await usecase_create(repository, ctx.body as ProductDto);
+    const service: CreateProduct = container.resolve(CreateProduct);
+    const product: Product = await service.invoke(ctx.body as ProductDto);
     ctx.body = { product }
 }
 
-//Voir pour verfier la request
 export async function update(ctx: Context): Promise<void>{
-    const product = await usecase_update(repository, ctx.body as ProductDto, ctx.params.id);
+    const service: UpdateProduct = container.resolve(UpdateProduct);
+    const product: Product = await service.invoke(ctx.body as ProductDto, ctx.params.id);
     ctx.body = { product }
 }

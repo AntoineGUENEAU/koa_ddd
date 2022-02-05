@@ -55,21 +55,18 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.ProductRepository = void 0;
 require("reflect-metadata");
-var dbConnection_1 = require("../dbConnection");
-var product_1 = require("./product");
 var inversify_1 = require("inversify");
+var products = [
+    { id: 'id1', reference: 'ref1', name: 'iphone', price: 34, updated_at: new Date(), created_at: new Date() },
+    { id: 'id2', reference: 'ref2', name: 'tv', price: 56, updated_at: new Date(), created_at: new Date() },
+];
 var ProductRepository = /** @class */ (function () {
     function ProductRepository() {
     }
     ProductRepository.prototype.list = function () {
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0: return [4 /*yield*/, (0, dbConnection_1.default)()];
-                    case 1:
-                        _a.sent();
-                        return [2 /*return*/, product_1.ProductMongo.find()];
-                }
+                return [2 /*return*/, products];
             });
         });
     };
@@ -77,43 +74,27 @@ var ProductRepository = /** @class */ (function () {
         var _a;
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_b) {
-                switch (_b.label) {
-                    case 0: return [4 /*yield*/, (0, dbConnection_1.default)()];
-                    case 1:
-                        _b.sent();
-                        return [2 /*return*/, (_a = product_1.ProductMongo.find({ id: id })[0]) !== null && _a !== void 0 ? _a : null];
-                }
+                return [2 /*return*/, (_a = products.filter(function (product) {
+                        return product.id === id;
+                    })[0]) !== null && _a !== void 0 ? _a : null];
             });
         });
     };
     ProductRepository.prototype.store = function (product) {
         return __awaiter(this, void 0, void 0, function () {
-            var question;
             return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0: return [4 /*yield*/, (0, dbConnection_1.default)()];
-                    case 1:
-                        _a.sent();
-                        question = new product_1.ProductMongo(product);
-                        return [4 /*yield*/, question.save()];
-                    case 2: return [2 /*return*/, _a.sent()];
-                }
+                products.push(product);
+                return [2 /*return*/, product];
             });
         });
     };
-    //Bug ici, ca va crée un nouveau produit, a voir dans le doc de mongoDB comme il faut faire.
     ProductRepository.prototype.update = function (product, idProduct) {
         return __awaiter(this, void 0, void 0, function () {
-            var question;
+            var index;
             return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0: return [4 /*yield*/, (0, dbConnection_1.default)()];
-                    case 1:
-                        _a.sent();
-                        question = new product_1.ProductMongo(__assign({}, product));
-                        return [4 /*yield*/, question.save()];
-                    case 2: return [2 /*return*/, _a.sent()];
-                }
+                index = products.findIndex((function (obj) { return obj.id == idProduct; }));
+                products[index] = __assign({}, product);
+                return [2 /*return*/, product];
             });
         });
     };
