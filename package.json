@@ -2,12 +2,12 @@
   "name": "kao_test",
   "author": "Antoine GUENEAU",
   "scripts": {
-    "dev": "ts-node src/main.ts",
+    "dev": "rimraf dist && tsc && nodemon src/main.ts",
     "test": "jest",
-    "tslint": "tslint ./src/**/*.ts --format verbose",
-    "tslint-fix": "tslint ./src/**/*.ts --format verbose --fix --force",
-    "prettier": "prettier -c ./src/**/*.ts",
-    "prettier-fix": "prettier -w ./src/**/*.ts"
+    "tslint": "tslint ./src/**/*.ts /tests/**/*.ts --format verbose",
+    "tslint-fix": "tslint ./src/**/*.ts  ./tests/**/*.ts --format verbose --fix --force",
+    "prettier": "prettier -c ./src/**/*.ts ./tests/**/*.ts",
+    "prettier-fix": "prettier -w ./src/**/*.ts ./tests/**/*.ts"
   },
   "devDependencies": {
     "@babel/preset-env": "^7.16.11",

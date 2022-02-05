@@ -52,14 +52,11 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-Object.defineProperty(exports, "__esModule", { value: true });
+exports.__esModule = true;
 exports.ProductRepository = void 0;
 require("reflect-metadata");
 var inversify_1 = require("inversify");
-var products = [
-    { id: 'id1', reference: 'ref1', name: 'iphone', price: 34, updated_at: new Date(), created_at: new Date() },
-    { id: 'id2', reference: 'ref2', name: 'tv', price: 56, updated_at: new Date(), created_at: new Date() },
-];
+var products = [{ id: "id1", reference: "ref1", name: "iphone", price: 34, updated_at: new Date(), created_at: new Date() }, { id: "id2", reference: "ref2", name: "tv", price: 56, updated_at: new Date(), created_at: new Date() }];
 var ProductRepository = /** @class */ (function () {
     function ProductRepository() {
     }
@@ -74,9 +71,9 @@ var ProductRepository = /** @class */ (function () {
         var _a;
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_b) {
-                return [2 /*return*/, (_a = products.filter(function (product) {
+                return [2 /*return*/, ((_a = products.filter(function (product) {
                         return product.id === id;
-                    })[0]) !== null && _a !== void 0 ? _a : null];
+                    })[0]) !== null && _a !== void 0 ? _a : null)];
             });
         });
     };
@@ -92,14 +89,14 @@ var ProductRepository = /** @class */ (function () {
         return __awaiter(this, void 0, void 0, function () {
             var index;
             return __generator(this, function (_a) {
-                index = products.findIndex((function (obj) { return obj.id == idProduct; }));
+                index = products.findIndex(function (obj) { return obj.id === idProduct; });
                 products[index] = __assign({}, product);
                 return [2 /*return*/, product];
             });
         });
     };
     ProductRepository = __decorate([
-        (0, inversify_1.injectable)()
+        inversify_1.injectable()
     ], ProductRepository);
     return ProductRepository;
 }());

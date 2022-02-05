@@ -1,9 +1,11 @@
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
+exports.__esModule = true;
 exports.container = void 0;
 var inversify_1 = require("inversify");
 var types_1 = require("./types");
 var productRepository_1 = require("./infra/data/inMemory/products/productRepository");
+var KoaServer_1 = require("./application/http/koa/KoaServer");
 var container = new inversify_1.Container();
 exports.container = container;
 container.bind(types_1.TYPES.ProductRepositoryInterface).to(productRepository_1.ProductRepository);
+container.bind(types_1.TYPES.ServerInterface).to(KoaServer_1.KoaServer).inSingletonScope();

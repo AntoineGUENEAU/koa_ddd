@@ -37,15 +37,15 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var container_1 = require("../src/container");
-var list_1 = require("../src/core/useCases/products/list");
-var show_1 = require("../src/core/useCases/products/show");
-var create_1 = require("../src/core/useCases/products/create");
-var update_1 = require("../src/core/useCases/products/update");
+var ListProducts_1 = require("../src/core/useCases/products/ListProducts");
+var ShowProduct_1 = require("../src/core/useCases/products/ShowProduct");
+var CreateProduct_1 = require("../src/core/useCases/products/CreateProduct");
+var UpdateProduct_1 = require("../src/core/useCases/products/UpdateProduct");
 test('should list the products', function () { return __awaiter(void 0, void 0, void 0, function () {
     var products;
     return __generator(this, function (_a) {
         switch (_a.label) {
-            case 0: return [4 /*yield*/, container_1.container.resolve(list_1.ListProducts).invoke()];
+            case 0: return [4 /*yield*/, container_1.container.resolve(ListProducts_1.ListProducts).invoke()];
             case 1:
                 products = _a.sent();
                 expect(products.length).toBe(2);
@@ -57,7 +57,7 @@ test('should display a product', function () { return __awaiter(void 0, void 0, 
     var product;
     return __generator(this, function (_a) {
         switch (_a.label) {
-            case 0: return [4 /*yield*/, container_1.container.resolve(show_1.ShowProduct).invoke('id2')];
+            case 0: return [4 /*yield*/, container_1.container.resolve(ShowProduct_1.ShowProduct).invoke('id2')];
             case 1:
                 product = _a.sent();
                 expect(product.id).toBe('id2');
@@ -72,7 +72,7 @@ test('should return none if the id product doesn\'t match', function () { return
     var product;
     return __generator(this, function (_a) {
         switch (_a.label) {
-            case 0: return [4 /*yield*/, container_1.container.resolve(show_1.ShowProduct).invoke('doest_exist')];
+            case 0: return [4 /*yield*/, container_1.container.resolve(ShowProduct_1.ShowProduct).invoke('doest_exist')];
             case 1:
                 product = _a.sent();
                 expect(product).toBeNull();
@@ -84,7 +84,7 @@ test('should create a new product', function () { return __awaiter(void 0, void 
     var product;
     return __generator(this, function (_a) {
         switch (_a.label) {
-            case 0: return [4 /*yield*/, container_1.container.resolve(create_1.CreateProduct).invoke({
+            case 0: return [4 /*yield*/, container_1.container.resolve(CreateProduct_1.CreateProduct).invoke({
                     id: 'id1',
                     name: 'name1',
                     reference: 'ref1',
@@ -104,7 +104,7 @@ test('should update a product', function () { return __awaiter(void 0, void 0, v
     var product, date1, date2, duration;
     return __generator(this, function (_a) {
         switch (_a.label) {
-            case 0: return [4 /*yield*/, container_1.container.resolve(update_1.UpdateProduct).invoke({
+            case 0: return [4 /*yield*/, container_1.container.resolve(UpdateProduct_1.UpdateProduct).invoke({
                     name: 'name1_updated',
                 }, 'id1')];
             case 1:

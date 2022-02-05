@@ -1,13 +1,11 @@
-const logger = require("koa-logger");
-const koaBody = require("koa-body");
-const validate = require("koa-validation");
-import { router } from "./application/http/routes/products/productsRoutes";
-const Koa = require("koa");
-const app = (module.exports = new Koa());
+import "reflect-metadata";
+import { container } from "./container";
+import { TYPES } from "./types";
+import { ServerInterface } from "./application/http/ServerInterface";
 
-app.use(logger());
-app.use(koaBody());
-app.use(validate());
-app.use(router.routes());
+const start = async (): Promise<void> => {
+    const server: ServerInterface = container.get<ServerInterface>(TYPES.ServerInterface);
+    return server.start();
+};
 
-app.listen(3000);
+start();

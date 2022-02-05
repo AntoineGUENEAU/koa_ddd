@@ -1,10 +1,10 @@
-import { Product, ProductDto } from "../../../core/domain/products/product";
+import { Product, ProductDto } from "../../../../core/domain/products/product";
 import { Context } from "koa";
-import { ListProducts } from "../../../core/useCases/products/list";
-import { container } from "../../../container";
-import { CreateProduct } from "../../../core/useCases/products/create";
-import { UpdateProduct } from "../../../core/useCases/products/update";
-import { ShowProduct } from "../../../core/useCases/products/show";
+import { container } from "../../../../container";
+import { ListProducts } from "../../../../core/useCases/products/ListProducts";
+import { CreateProduct } from "../../../../core/useCases/products/CreateProduct";
+import { UpdateProduct } from "../../../../core/useCases/products/UpdateProduct";
+import { ShowProduct } from "../../../../core/useCases/products/ShowProduct";
 
 export async function list(ctx: Context): Promise<void> {
     ctx.body = { products: (await container.resolve(ListProducts).invoke()) as Product[] };

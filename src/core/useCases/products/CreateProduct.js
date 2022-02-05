@@ -1,12 +1,20 @@
 "use strict";
+var __assign = (this && this.__assign) || function () {
+    __assign = Object.assign || function(t) {
+        for (var s, i = 1, n = arguments.length; i < n; i++) {
+            s = arguments[i];
+            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
+                t[p] = s[p];
+        }
+        return t;
+    };
+    return __assign.apply(this, arguments);
+};
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
@@ -44,28 +52,29 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.ListProducts = void 0;
+exports.__esModule = true;
+exports.CreateProduct = void 0;
 require("reflect-metadata");
 var inversify_1 = require("inversify");
 var types_1 = require("../../../types");
-var ListProducts = /** @class */ (function () {
-    function ListProducts() {
+var CreateProduct = /** @class */ (function () {
+    function CreateProduct() {
     }
-    ListProducts.prototype.invoke = function () {
+    CreateProduct.prototype.invoke = function (productDto) {
         return __awaiter(this, void 0, void 0, function () {
+            var newProduct;
             return __generator(this, function (_a) {
-                return [2 /*return*/, this.repository.list()];
+                newProduct = __assign(__assign({}, productDto), { updated_at: new Date(), created_at: new Date() });
+                return [2 /*return*/, this.repository.store(newProduct)];
             });
         });
     };
     __decorate([
-        (0, inversify_1.inject)(types_1.TYPES.ProductRepositoryInterface),
-        __metadata("design:type", Object)
-    ], ListProducts.prototype, "repository", void 0);
-    ListProducts = __decorate([
-        (0, inversify_1.injectable)()
-    ], ListProducts);
-    return ListProducts;
+        inversify_1.inject(types_1.TYPES.ProductRepositoryInterface)
+    ], CreateProduct.prototype, "repository");
+    CreateProduct = __decorate([
+        inversify_1.injectable()
+    ], CreateProduct);
+    return CreateProduct;
 }());
-exports.ListProducts = ListProducts;
+exports.CreateProduct = CreateProduct;

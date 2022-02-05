@@ -35,13 +35,13 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-Object.defineProperty(exports, "__esModule", { value: true });
+exports.__esModule = true;
 exports.update = exports.create = exports.show = exports.list = void 0;
-var list_1 = require("../../../core/useCases/products/list");
-var container_1 = require("../../../container");
-var create_1 = require("../../../core/useCases/products/create");
-var update_1 = require("../../../core/useCases/products/update");
-var show_1 = require("../../../core/useCases/products/show");
+var container_1 = require("../../../../container");
+var ListProducts_1 = require("../../../../core/useCases/products/ListProducts");
+var CreateProduct_1 = require("../../../../core/useCases/products/CreateProduct");
+var UpdateProduct_1 = require("../../../../core/useCases/products/UpdateProduct");
+var ShowProduct_1 = require("../../../../core/useCases/products/ShowProduct");
 function list(ctx) {
     return __awaiter(this, void 0, void 0, function () {
         var _a;
@@ -49,10 +49,9 @@ function list(ctx) {
         return __generator(this, function (_c) {
             switch (_c.label) {
                 case 0:
-                    console.log('in list');
                     _a = ctx;
                     _b = {};
-                    return [4 /*yield*/, container_1.container.resolve(list_1.ListProducts).invoke()];
+                    return [4 /*yield*/, container_1.container.resolve(ListProducts_1.ListProducts).invoke()];
                 case 1:
                     _a.body = (_b.products = (_c.sent()), _b);
                     return [2 /*return*/];
@@ -67,13 +66,12 @@ function show(ctx) {
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
-                    console.log('in show');
                     id = ctx.params.id;
-                    return [4 /*yield*/, container_1.container.resolve(show_1.ShowProduct).invoke(id)];
+                    return [4 /*yield*/, container_1.container.resolve(ShowProduct_1.ShowProduct).invoke(id)];
                 case 1:
                     product = _a.sent();
                     if (!product) {
-                        ctx.throw(404, 'invalid product id');
+                        ctx["throw"](404, "invalid product id");
                     }
                     ctx.body = { product: product };
                     return [2 /*return*/];
@@ -87,10 +85,7 @@ function create(ctx) {
         var product;
         return __generator(this, function (_a) {
             switch (_a.label) {
-                case 0:
-                    console.log('in create');
-                    console.log(333, ctx.body);
-                    return [4 /*yield*/, container_1.container.resolve(create_1.CreateProduct).invoke(ctx.body)];
+                case 0: return [4 /*yield*/, container_1.container.resolve(CreateProduct_1.CreateProduct).invoke(ctx.body)];
                 case 1:
                     product = _a.sent();
                     ctx.body = { product: product };
@@ -105,9 +100,7 @@ function update(ctx) {
         var product;
         return __generator(this, function (_a) {
             switch (_a.label) {
-                case 0:
-                    console.log('in update');
-                    return [4 /*yield*/, container_1.container.resolve(update_1.UpdateProduct).invoke(ctx.body, ctx.params.id)];
+                case 0: return [4 /*yield*/, container_1.container.resolve(UpdateProduct_1.UpdateProduct).invoke(ctx.body, ctx.params.id)];
                 case 1:
                     product = _a.sent();
                     ctx.body = { product: product };
