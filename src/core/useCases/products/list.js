@@ -49,7 +49,6 @@ exports.ListProducts = void 0;
 require("reflect-metadata");
 var inversify_1 = require("inversify");
 var types_1 = require("../../../types");
-var productRepository_1 = require("../../../infra/data/inMemory/products/productRepository");
 var ListProducts = /** @class */ (function () {
     function ListProducts() {
     }
@@ -62,7 +61,7 @@ var ListProducts = /** @class */ (function () {
     };
     __decorate([
         (0, inversify_1.inject)(types_1.TYPES.ProductRepositoryInterface),
-        __metadata("design:type", productRepository_1.ProductRepository)
+        __metadata("design:type", Object)
     ], ListProducts.prototype, "repository", void 0);
     ListProducts = __decorate([
         (0, inversify_1.injectable)()

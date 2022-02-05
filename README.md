@@ -27,3 +27,5 @@ docker-composer up -d --build
 
 ## TODO
 - Abstraire le serveur HTTP (Koa) dans une interface
+- Améliorer le retour des UseCases (Ils ne doivent pas retourner des object du domaine normalement)
+- Améliorer le systeme de DTO.

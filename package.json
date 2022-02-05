@@ -2,7 +2,7 @@
   "name": "kao_test",
   "author": "Antoine GUENEAU",
   "scripts": {
-    "dev": "rimraf dist && tsc && nodemon src/main.ts",
+    "dev": "ts-node src/main.ts",
     "test": "jest",
     "tslint": "tslint ./src/**/*.ts --format verbose",
     "tslint-fix": "tslint ./src/**/*.ts --format verbose --fix --force",

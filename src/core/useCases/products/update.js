@@ -57,9 +57,9 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.UpdateProduct = void 0;
+require("reflect-metadata");
 var inversify_1 = require("inversify");
 var types_1 = require("../../../types");
-var productRepository_1 = require("../../../infra/data/inMemory/products/productRepository");
 var UpdateProduct = /** @class */ (function () {
     function UpdateProduct() {
     }
@@ -79,7 +79,7 @@ var UpdateProduct = /** @class */ (function () {
     };
     __decorate([
         (0, inversify_1.inject)(types_1.TYPES.ProductRepositoryInterface),
-        __metadata("design:type", productRepository_1.ProductRepository)
+        __metadata("design:type", Object)
     ], UpdateProduct.prototype, "repository", void 0);
     UpdateProduct = __decorate([
         (0, inversify_1.injectable)()

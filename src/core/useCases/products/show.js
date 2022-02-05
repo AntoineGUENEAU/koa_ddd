@@ -10,7 +10,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.ShowProduct = void 0;
-var productRepository_1 = require("../../../infra/data/inMemory/products/productRepository");
+require("reflect-metadata");
 var inversify_1 = require("inversify");
 var types_1 = require("../../../types");
 var ShowProduct = /** @class */ (function () {
@@ -21,7 +21,7 @@ var ShowProduct = /** @class */ (function () {
     };
     __decorate([
         (0, inversify_1.inject)(types_1.TYPES.ProductRepositoryInterface),
-        __metadata("design:type", productRepository_1.ProductRepository)
+        __metadata("design:type", Object)
     ], ShowProduct.prototype, "repository", void 0);
     ShowProduct = __decorate([
         (0, inversify_1.injectable)()

@@ -44,16 +44,15 @@ var update_1 = require("../../../core/useCases/products/update");
 var show_1 = require("../../../core/useCases/products/show");
 function list(ctx) {
     return __awaiter(this, void 0, void 0, function () {
-        var service, _a;
+        var _a;
         var _b;
         return __generator(this, function (_c) {
             switch (_c.label) {
                 case 0:
-                    service = container_1.container.resolve(list_1.ListProducts);
-                    console.log(service);
+                    console.log('in list');
                     _a = ctx;
                     _b = {};
-                    return [4 /*yield*/, service.invoke()];
+                    return [4 /*yield*/, container_1.container.resolve(list_1.ListProducts).invoke()];
                 case 1:
                     _a.body = (_b.products = (_c.sent()), _b);
                     return [2 /*return*/];
@@ -64,13 +63,13 @@ function list(ctx) {
 exports.list = list;
 function show(ctx) {
     return __awaiter(this, void 0, void 0, function () {
-        var service, id, product;
+        var id, product;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
-                    service = container_1.container.resolve(show_1.ShowProduct);
+                    console.log('in show');
                     id = ctx.params.id;
-                    return [4 /*yield*/, service.invoke(id)];
+                    return [4 /*yield*/, container_1.container.resolve(show_1.ShowProduct).invoke(id)];
                 case 1:
                     product = _a.sent();
                     if (!product) {
@@ -85,12 +84,13 @@ function show(ctx) {
 exports.show = show;
 function create(ctx) {
     return __awaiter(this, void 0, void 0, function () {
-        var service, product;
+        var product;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
-                    service = container_1.container.resolve(create_1.CreateProduct);
-                    return [4 /*yield*/, service.invoke(ctx.body)];
+                    console.log('in create');
+                    console.log(333, ctx.body);
+                    return [4 /*yield*/, container_1.container.resolve(create_1.CreateProduct).invoke(ctx.body)];
                 case 1:
                     product = _a.sent();
                     ctx.body = { product: product };
@@ -102,12 +102,12 @@ function create(ctx) {
 exports.create = create;
 function update(ctx) {
     return __awaiter(this, void 0, void 0, function () {
-        var service, product;
+        var product;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
-                    service = container_1.container.resolve(update_1.UpdateProduct);
-                    return [4 /*yield*/, service.invoke(ctx.body, ctx.params.id)];
+                    console.log('in update');
+                    return [4 /*yield*/, container_1.container.resolve(update_1.UpdateProduct).invoke(ctx.body, ctx.params.id)];
                 case 1:
                     product = _a.sent();
                     ctx.body = { product: product };
