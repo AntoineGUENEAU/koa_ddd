@@ -24,3 +24,6 @@ Build and up the containers
 ```bash
 docker-composer up -d --build
 ```
+
+## TODO
+- Abstraire le serveur HTTP (Koa) dans une interface

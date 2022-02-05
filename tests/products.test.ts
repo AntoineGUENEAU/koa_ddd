@@ -1,5 +1,4 @@
 import {Product} from "../src/core/domain/products/product";
-import * as moment from "moment";
 import {container} from "../src/container";
 import {ListProducts} from "../src/core/useCases/products/list";
 import {ShowProduct} from "../src/core/useCases/products/show";
@@ -41,7 +40,9 @@ test('should update a product', async () => {
     const product: Product = await container.resolve(UpdateProduct).invoke( {
         name: 'name1_updated',
     }, 'id1')
-    const duration: number = moment.duration(moment(Date()).diff(moment(product.updated_at))).asSeconds();
+    const date1:any = new Date();
+    const date2:any = product.updated_at;
+    const duration = Math.abs(date2 - date1);
+    expect(duration).toBeLessThan(500);
     expect(product.name).toBe('name1_updated');
-    expect(duration).toBeLessThan(1);
 });
