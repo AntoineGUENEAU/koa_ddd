@@ -1,4 +1,4 @@
-## Try the clean architecture with Typescript + Koa + Inversify + Jest
+## Try the DDD with Typescript + Koa + Inversify + Jest
 
 ## Installation
 ```bash
