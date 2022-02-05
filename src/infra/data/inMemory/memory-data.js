@@ -52,34 +52,57 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-exports.__esModule = true;
-exports.UpdateProduct = void 0;
-require("reflect-metadata");
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.MemoryData = void 0;
 var inversify_1 = require("inversify");
-var types_1 = require("../../../types");
-var UpdateProduct = /** @class */ (function () {
-    function UpdateProduct() {
+var cuid_1 = require("cuid");
+var Collection = /** @class */ (function () {
+    function Collection() {
+        this.data = {};
     }
-    UpdateProduct.prototype.invoke = function (productDto, idProduct) {
+    Collection.prototype.findAll = function () {
         return __awaiter(this, void 0, void 0, function () {
-            var productToUpdate, newProduct;
             return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.repository.show(idProduct)];
-                    case 1:
-                        productToUpdate = _a.sent();
-                        newProduct = __assign(__assign(__assign({}, productToUpdate), productDto), { updated_at: new Date() });
-                        return [2 /*return*/, this.repository.update(newProduct, idProduct)];
-                }
+                return [2 /*return*/, Object.entries(this.data).map(function (_a) {
+                        var key = _a[0], value = _a[1];
+                        return (__assign({ id: key }, value));
+                    })];
             });
         });
     };
-    __decorate([
-        inversify_1.inject(types_1.TYPES.ProductRepositoryInterface)
-    ], UpdateProduct.prototype, "repository");
-    UpdateProduct = __decorate([
-        inversify_1.injectable()
-    ], UpdateProduct);
-    return UpdateProduct;
+    Collection.prototype.getById = function (id) {
+        return __awaiter(this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                return [2 /*return*/, this.data[id]];
+            });
+        });
+    };
+    Collection.prototype.insert = function (value) {
+        return __awaiter(this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                this.data[value.id || (0, cuid_1.default)()] = value;
+                return [2 /*return*/, value];
+            });
+        });
+    };
+    Collection.prototype.update = function (id, value) {
+        return __awaiter(this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                this.data[id] = value;
+                return [2 /*return*/, this.data[id]];
+            });
+        });
+    };
+    return Collection;
 }());
-exports.UpdateProduct = UpdateProduct;
+var MemoryData = /** @class */ (function () {
+    function MemoryData() {
+        this.items = new Collection();
+        this.cart = new Collection();
+    }
+    MemoryData = __decorate([
+        (0, inversify_1.injectable)()
+    ], MemoryData);
+    return MemoryData;
+}());
+exports.MemoryData = MemoryData;

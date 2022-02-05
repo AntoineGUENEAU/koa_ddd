@@ -1,14 +1,14 @@
 import "reflect-metadata";
-import { Product } from "../../domain/products/product";
+import {ProductDto} from "../../domain/product/product";
 import { inject, injectable } from "inversify";
 import { TYPES } from "../../../types";
-import { ProductRepositoryInterface } from "../../domain/products/productRepositoryInterface";
+import { ProductRepositoryInterface } from "../../domain/product/productRepositoryInterface";
 
 @injectable()
 export class ListProducts {
     @inject(TYPES.ProductRepositoryInterface) private repository: ProductRepositoryInterface;
 
-    public async invoke(): Promise<Product[]> {
+    public async invoke(): Promise<ProductDto[]> {
         return this.repository.list();
     }
 }

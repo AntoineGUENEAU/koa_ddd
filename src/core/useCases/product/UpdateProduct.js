@@ -16,6 +16,9 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -53,54 +56,34 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.ProductRepository = void 0;
+exports.UpdateProduct = void 0;
 require("reflect-metadata");
 var inversify_1 = require("inversify");
-var products = [
-    { id: "id1", reference: "ref1", name: "iphone", price: 34, updated_at: new Date(), created_at: new Date() },
-    { id: "id2", reference: "ref2", name: "tv", price: 56, updated_at: new Date(), created_at: new Date() }
-];
-var ProductRepository = /** @class */ (function () {
-    function ProductRepository() {
+var types_1 = require("../../../types");
+var UpdateProduct = /** @class */ (function () {
+    function UpdateProduct() {
     }
-    ProductRepository.prototype.list = function () {
+    UpdateProduct.prototype.invoke = function (productDto, idProduct) {
         return __awaiter(this, void 0, void 0, function () {
+            var productToUpdate, newProduct;
             return __generator(this, function (_a) {
-                return [2 /*return*/, products];
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, this.repository.show(idProduct)];
+                    case 1:
+                        productToUpdate = _a.sent();
+                        newProduct = __assign(__assign(__assign({}, productToUpdate), productDto), { updated_at: new Date() });
+                        return [2 /*return*/, this.repository.update(newProduct, idProduct)];
+                }
             });
         });
     };
-    ProductRepository.prototype.show = function (id) {
-        var _a;
-        return __awaiter(this, void 0, void 0, function () {
-            return __generator(this, function (_b) {
-                return [2 /*return*/, ((_a = products.filter(function (product) {
-                        return product.id === id;
-                    })[0]) !== null && _a !== void 0 ? _a : null)];
-            });
-        });
-    };
-    ProductRepository.prototype.store = function (product) {
-        return __awaiter(this, void 0, void 0, function () {
-            return __generator(this, function (_a) {
-                products.push(product);
-                return [2 /*return*/, product];
-            });
-        });
-    };
-    ProductRepository.prototype.update = function (product, idProduct) {
-        return __awaiter(this, void 0, void 0, function () {
-            var index;
-            return __generator(this, function (_a) {
-                index = products.findIndex(function (obj) { return obj.id === idProduct; });
-                products[index] = __assign({}, product);
-                return [2 /*return*/, product];
-            });
-        });
-    };
-    ProductRepository = __decorate([
+    __decorate([
+        (0, inversify_1.inject)(types_1.TYPES.ProductRepositoryInterface),
+        __metadata("design:type", Object)
+    ], UpdateProduct.prototype, "repository", void 0);
+    UpdateProduct = __decorate([
         (0, inversify_1.injectable)()
-    ], ProductRepository);
-    return ProductRepository;
+    ], UpdateProduct);
+    return UpdateProduct;
 }());
-exports.ProductRepository = ProductRepository;
+exports.UpdateProduct = UpdateProduct;

@@ -1,10 +1,4 @@
 "use strict";
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -41,27 +35,40 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-exports.__esModule = true;
-exports.ListProducts = void 0;
-require("reflect-metadata");
-var inversify_1 = require("inversify");
-var types_1 = require("../../../types");
-var ListProducts = /** @class */ (function () {
-    function ListProducts() {
-    }
-    ListProducts.prototype.invoke = function () {
-        return __awaiter(this, void 0, void 0, function () {
-            return __generator(this, function (_a) {
-                return [2 /*return*/, this.repository.list()];
-            });
-        });
+Object.defineProperty(exports, "__esModule", { value: true });
+var container_1 = require("../src/container");
+var AddProductInACart_1 = require("../src/core/useCases/cart/AddProductInACart");
+test("should add a product in a cart with a quantity of 1", function () { return __awaiter(void 0, void 0, void 0, function () {
+    var cart;
+    return __generator(this, function (_a) {
+        switch (_a.label) {
+            case 0: return [4 /*yield*/, container_1.container.resolve(AddProductInACart_1.AddProductInACart).invoke('1', getFakeProduct(), 1)];
+            case 1:
+                cart = _a.sent();
+                expect(cart.countItems).toBe(1);
+                return [2 /*return*/];
+        }
+    });
+}); });
+test("should add a product in a cart with a quantity of 2", function () { return __awaiter(void 0, void 0, void 0, function () {
+    var cart;
+    return __generator(this, function (_a) {
+        switch (_a.label) {
+            case 0: return [4 /*yield*/, container_1.container.resolve(AddProductInACart_1.AddProductInACart).invoke('1', getFakeProduct(), 2)];
+            case 1:
+                cart = _a.sent();
+                expect(cart.countItems).toBe(2);
+                return [2 /*return*/];
+        }
+    });
+}); });
+function getFakeProduct() {
+    return {
+        id: "idFake",
+        name: "nameFake",
+        reference: "refFake",
+        price: 678,
+        updated_at: new Date(),
+        created_at: new Date(),
     };
-    __decorate([
-        inversify_1.inject(types_1.TYPES.ProductRepositoryInterface)
-    ], ListProducts.prototype, "repository");
-    ListProducts = __decorate([
-        inversify_1.injectable()
-    ], ListProducts);
-    return ListProducts;
-}());
-exports.ListProducts = ListProducts;
+}

@@ -26,7 +26,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-exports.__esModule = true;
+Object.defineProperty(exports, "__esModule", { value: true });
 exports.router = void 0;
 var router = require("@koa/router")();
 exports.router = router;
@@ -36,7 +36,7 @@ router.post("/products", function () {
             case 0: return [4 /*yield*/, this.validateBody({
                     reference: "required",
                     name: "required",
-                    price: "required"
+                    price: "required",
                 })];
             case 1:
                 _a.sent();
@@ -58,7 +58,7 @@ router.put("/products/:id", function () {
             case 0: return [4 /*yield*/, this.validateBody({
                     reference: "required",
                     name: "required",
-                    price: "required"
+                    price: "required",
                 })];
             case 1:
                 _a.sent();

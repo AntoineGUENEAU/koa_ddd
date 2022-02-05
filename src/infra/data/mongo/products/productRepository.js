@@ -52,7 +52,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-exports.__esModule = true;
+Object.defineProperty(exports, "__esModule", { value: true });
 exports.ProductRepository = void 0;
 require("reflect-metadata");
 var dbConnection_1 = require("../dbConnection");
@@ -65,7 +65,7 @@ var ProductRepository = /** @class */ (function () {
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, dbConnection_1["default"]()];
+                    case 0: return [4 /*yield*/, (0, dbConnection_1.default)()];
                     case 1:
                         _a.sent();
                         return [2 /*return*/, product_1.ProductMongo.find()];
@@ -78,7 +78,7 @@ var ProductRepository = /** @class */ (function () {
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_b) {
                 switch (_b.label) {
-                    case 0: return [4 /*yield*/, dbConnection_1["default"]()];
+                    case 0: return [4 /*yield*/, (0, dbConnection_1.default)()];
                     case 1:
                         _b.sent();
                         return [2 /*return*/, (_a = product_1.ProductMongo.find({ id: id })[0]) !== null && _a !== void 0 ? _a : null];
@@ -91,7 +91,7 @@ var ProductRepository = /** @class */ (function () {
             var question;
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, dbConnection_1["default"]()];
+                    case 0: return [4 /*yield*/, (0, dbConnection_1.default)()];
                     case 1:
                         _a.sent();
                         question = new product_1.ProductMongo(product);
@@ -101,13 +101,13 @@ var ProductRepository = /** @class */ (function () {
             });
         });
     };
-    // Bug ici, ca va crée un nouveau produit, a voir dans le doc de mongoDB comme il faut faire.
+    // TODO Bug ici, ca va crée un nouveau produit, a voir dans le doc de mongoDB comme il faut faire.
     ProductRepository.prototype.update = function (product, idProduct) {
         return __awaiter(this, void 0, void 0, function () {
             var question;
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, dbConnection_1["default"]()];
+                    case 0: return [4 /*yield*/, (0, dbConnection_1.default)()];
                     case 1:
                         _a.sent();
                         question = new product_1.ProductMongo(__assign({}, product));
@@ -118,7 +118,7 @@ var ProductRepository = /** @class */ (function () {
         });
     };
     ProductRepository = __decorate([
-        inversify_1.injectable()
+        (0, inversify_1.injectable)()
     ], ProductRepository);
     return ProductRepository;
 }());

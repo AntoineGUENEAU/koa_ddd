@@ -35,13 +35,13 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-exports.__esModule = true;
+Object.defineProperty(exports, "__esModule", { value: true });
 exports.update = exports.create = exports.show = exports.list = void 0;
 var container_1 = require("../../../../container");
-var ListProducts_1 = require("../../../../core/useCases/products/ListProducts");
-var CreateProduct_1 = require("../../../../core/useCases/products/CreateProduct");
-var UpdateProduct_1 = require("../../../../core/useCases/products/UpdateProduct");
-var ShowProduct_1 = require("../../../../core/useCases/products/ShowProduct");
+var ListProducts_1 = require("../../../../core/useCases/product/ListProducts");
+var CreateProduct_1 = require("../../../../core/useCases/product/CreateProduct");
+var UpdateProduct_1 = require("../../../../core/useCases/product/UpdateProduct");
+var ShowProduct_1 = require("../../../../core/useCases/product/ShowProduct");
 function list(ctx) {
     return __awaiter(this, void 0, void 0, function () {
         var _a;
@@ -71,7 +71,7 @@ function show(ctx) {
                 case 1:
                     product = _a.sent();
                     if (!product) {
-                        ctx["throw"](404, "invalid product id");
+                        ctx.throw(404, "invalid product id");
                     }
                     ctx.body = { product: product };
                     return [2 /*return*/];

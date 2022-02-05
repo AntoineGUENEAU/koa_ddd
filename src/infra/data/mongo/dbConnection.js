@@ -35,17 +35,18 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-exports.__esModule = true;
+Object.defineProperty(exports, "__esModule", { value: true });
 var mongoose_1 = require("mongoose");
 require("dotenv").config();
 function connection() {
     return __awaiter(this, void 0, void 0, function () {
         return __generator(this, function (_a) {
-            mongoose_1["default"]
+            mongoose_1.default
                 .connect(process.env.DB_CONNECTION)
-                .then(function () { return console.log("MongoDB Connected"); })["catch"](function (err) { return console.log(err); });
+                .then(function () { return console.log("MongoDB Connected"); })
+                .catch(function (err) { return console.log(err); });
             return [2 /*return*/];
         });
     });
 }
-exports["default"] = connection;
+exports.default = connection;

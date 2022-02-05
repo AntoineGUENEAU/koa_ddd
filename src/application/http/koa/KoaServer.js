@@ -5,7 +5,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
-exports.__esModule = true;
+Object.defineProperty(exports, "__esModule", { value: true });
 exports.KoaServer = void 0;
 require("reflect-metadata");
 var productsRoutes_1 = require("./routes/products/productsRoutes");
@@ -26,7 +26,7 @@ var KoaServer = /** @class */ (function () {
         app.listen(3000);
     };
     KoaServer = __decorate([
-        inversify_1.injectable()
+        (0, inversify_1.injectable)()
     ], KoaServer);
     return KoaServer;
 }());

@@ -26,6 +26,5 @@ docker-composer up -d --build
 ```
 
 ## TODO
-- Abstraire le serveur HTTP (Koa) dans une interface
 - Améliorer le retour des UseCases (Ils ne doivent pas retourner des object du domaine normalement)
-- Améliorer le systeme de DTO.
+sur les UseCase cart je retourne des ojects du domaine et sur les UseCase product je retourne des Dto, a voir que'elle est la bonne pratique
