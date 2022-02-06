@@ -76,7 +76,7 @@ var CartRepository = /** @class */ (function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        dtoCart = cart.unmarshal();
+                        dtoCart = cart.toDto();
                         return [4 /*yield*/, this._database.cart.insert(dtoCart)];
                     case 1:
                         inserted = _a.sent();
@@ -91,7 +91,7 @@ var CartRepository = /** @class */ (function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        dtoCart = cart.unmarshal();
+                        dtoCart = cart.toDto();
                         return [4 /*yield*/, this._database.cart.update(cart.id, dtoCart)];
                     case 1:
                         updated = _a.sent();

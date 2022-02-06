@@ -27,7 +27,7 @@ export class Product extends Entity<ProductProps> {
         return new Product(props)
     }
 
-    public unmarshal(): ProductDto {
+    public toDto(): ProductDto {
         return {
             id: this.id,
             reference: this.reference,

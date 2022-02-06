@@ -45,7 +45,7 @@ test("should add a product in a cart with a quantity of 1", function () { return
             case 0: return [4 /*yield*/, container_1.container.resolve(AddProductInACart_1.AddProductInACart).invoke('1', getFakeProduct(), 1)];
             case 1:
                 cart = _a.sent();
-                expect(cart.countItems).toBe(1);
+                expect(cart.items.length).toBe(1);
                 return [2 /*return*/];
         }
     });
@@ -57,7 +57,7 @@ test("should add a product in a cart with a quantity of 2", function () { return
             case 0: return [4 /*yield*/, container_1.container.resolve(AddProductInACart_1.AddProductInACart).invoke('1', getFakeProduct(), 2)];
             case 1:
                 cart = _a.sent();
-                expect(cart.countItems).toBe(2);
+                expect(cart.items.length).toBe(2);
                 return [2 /*return*/];
         }
     });

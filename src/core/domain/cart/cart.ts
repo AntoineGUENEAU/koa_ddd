@@ -36,11 +36,11 @@ export class Cart extends Entity<CartProps>{
         return cart
     }
 
-    public unmarshal(): CartDto {
+    public toDto(): CartDto {
         return {
             id: this.id,
             items: this.products.map((product) => ({
-                item: product.item.unmarshal(),
+                item: product.item.toDto(),
                 quantity: product.quantity,
             })),
             totalPrice: this.totalPrice,
@@ -62,17 +62,13 @@ export class Cart extends Entity<CartProps>{
         return this._id
     }
 
-    get countItems(): number {
-        return this._products.length
-    }
-
     get totalPrice(): number {
         return this.products.reduce((carry, line) => {
             return carry + line.item.price
         }, 0)
     }
 
-    public add(item: Product, quantity: number): void {
+    public add(item: ProductDto, quantity: number): void {
         this.products = [...this.products, { item, quantity }]
     }
 }

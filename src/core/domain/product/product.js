@@ -25,7 +25,7 @@ var Product = /** @class */ (function (_super) {
     Product.create = function (props) {
         return new Product(props);
     };
-    Product.prototype.unmarshal = function () {
+    Product.prototype.toDto = function () {
         return {
             id: this.id,
             reference: this.reference,

@@ -26,5 +26,4 @@ docker-composer up -d --build
 ```
 
 ## TODO
-- Améliorer le retour des UseCases (Ils ne doivent pas retourner des object du domaine normalement)
-sur les UseCase cart je retourne des ojects du domaine et sur les UseCase product je retourne des Dto, a voir que'elle est la bonne pratique
+- Faire un system de connection pour apprendre a gérer la session en NodeJS et en Hexagonal Archi

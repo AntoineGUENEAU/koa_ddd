@@ -55,15 +55,13 @@ var AbstractCart = /** @class */ (function () {
     }
     AbstractCart.prototype._getCart = function (id) {
         return __awaiter(this, void 0, void 0, function () {
-            var cart, e_1, emptyCart;
+            var e_1, emptyCart;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
                         _a.trys.push([0, 2, , 3]);
                         return [4 /*yield*/, this.repository.getById(id)];
-                    case 1:
-                        cart = _a.sent();
-                        return [2 /*return*/, cart];
+                    case 1: return [2 /*return*/, _a.sent()];
                     case 2:
                         e_1 = _a.sent();
                         emptyCart = cart_1.Cart.create({ id: id });

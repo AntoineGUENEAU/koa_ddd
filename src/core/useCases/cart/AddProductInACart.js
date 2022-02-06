@@ -66,7 +66,7 @@ var AddProductInACart = /** @class */ (function (_super) {
     function AddProductInACart() {
         return _super !== null && _super.apply(this, arguments) || this;
     }
-    AddProductInACart.prototype.invoke = function (cartId, item, quatity) {
+    AddProductInACart.prototype.invoke = function (cartId, item, quantity) {
         return __awaiter(this, void 0, void 0, function () {
             var cart;
             return __generator(this, function (_a) {
@@ -74,8 +74,9 @@ var AddProductInACart = /** @class */ (function (_super) {
                     case 0: return [4 /*yield*/, this._getCart(cartId)];
                     case 1:
                         cart = _a.sent();
-                        cart.add(item, quatity);
-                        return [2 /*return*/, this.repository.update(cart)];
+                        cart.add(item, quantity);
+                        return [4 /*yield*/, this.repository.update(cart)];
+                    case 2: return [2 /*return*/, (_a.sent()).toDto()];
                 }
             });
         });

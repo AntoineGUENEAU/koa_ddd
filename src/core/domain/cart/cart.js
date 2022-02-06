@@ -49,11 +49,11 @@ var Cart = /** @class */ (function (_super) {
         cart.products = cart.props.products || [];
         return cart;
     };
-    Cart.prototype.unmarshal = function () {
+    Cart.prototype.toDto = function () {
         return {
             id: this.id,
             items: this.products.map(function (product) { return ({
-                item: product.item.unmarshal(),
+                item: product.item.toDto(),
                 quantity: product.quantity,
             }); }),
             totalPrice: this.totalPrice,
@@ -75,13 +75,6 @@ var Cart = /** @class */ (function (_super) {
     Object.defineProperty(Cart.prototype, "id", {
         get: function () {
             return this._id;
-        },
-        enumerable: false,
-        configurable: true
-    });
-    Object.defineProperty(Cart.prototype, "countItems", {
-        get: function () {
-            return this._products.length;
         },
         enumerable: false,
         configurable: true

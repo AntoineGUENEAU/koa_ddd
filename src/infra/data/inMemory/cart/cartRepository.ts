@@ -18,13 +18,13 @@ export class CartRepository implements CartRepositoryInterface {
         return CartMapper.toDomain(cart)
     }
     async create(cart: Cart): Promise<Cart> {
-        const dtoCart = cart.unmarshal()
+        const dtoCart = cart.toDto()
         const inserted = await this._database.cart.insert<CartDto>(dtoCart)
         return CartMapper.toDomain(inserted)
     }
 
     async update(cart: Cart): Promise<Cart> {
-        const dtoCart = cart.unmarshal()
+        const dtoCart = cart.toDto()
         const updated = await this._database.cart.update<CartDto>(
             cart.id,
             dtoCart,

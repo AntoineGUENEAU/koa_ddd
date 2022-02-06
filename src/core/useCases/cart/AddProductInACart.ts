@@ -1,14 +1,14 @@
 import "reflect-metadata";
 import {injectable} from "inversify";
-import {Cart} from "../../domain/cart/cart";
-import {Product} from "../../domain/product/product";
+import {CartDto} from "../../domain/cart/cart";
+import {ProductDto} from "../../domain/product/product";
 import {AbstractCart} from "./AbstractCart";
 
 @injectable()
 export class AddProductInACart extends AbstractCart {
-    public async invoke(cartId: string, item: Product, quantity: number): Promise<Cart> {
+    public async invoke(cartId: string, item: ProductDto, quantity: number): Promise<CartDto> {
         const cart = await this._getCart(cartId)
         cart.add(item, quantity)
-        return this.repository.update(cart)
+        return (await this.repository.update(cart)).toDto()
     }
 }
