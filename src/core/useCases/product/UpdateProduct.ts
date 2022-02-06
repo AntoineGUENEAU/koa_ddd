@@ -11,6 +11,6 @@ export class UpdateProduct {
     public async invoke(productDto: ProductDto, idProduct: string): Promise<ProductDto> {
         const productToUpdate: ProductDto = await this.repository.show(idProduct);
         const newProduct = { ...productToUpdate, ...productDto, updated_at: new Date() } as Product;
-        return this.repository.update(newProduct, idProduct);
+        return (await this.repository.update(newProduct, idProduct)).toDto();
     }
 }

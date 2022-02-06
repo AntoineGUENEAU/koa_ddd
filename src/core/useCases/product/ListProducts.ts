@@ -9,6 +9,8 @@ export class ListProducts {
     @inject(TYPES.ProductRepositoryInterface) private repository: ProductRepositoryInterface;
 
     public async invoke(): Promise<ProductDto[]> {
-        return this.repository.list();
+        return (await this.repository.list()).map((product) => {
+            return product.toDto()
+        });
     }
 }

@@ -55,7 +55,13 @@ var ListProducts = /** @class */ (function () {
     ListProducts.prototype.invoke = function () {
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {
-                return [2 /*return*/, this.repository.list()];
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, this.repository.list()];
+                    case 1: return [2 /*return*/, (_a.sent()).map(function (product) {
+                            console.log(product, typeof product);
+                            return product.toDto();
+                        })];
+                }
             });
         });
     };

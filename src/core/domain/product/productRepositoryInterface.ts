@@ -1,8 +1,8 @@
-import {ProductDto} from "./product";
+import {Product, ProductDto} from "./product";
 
 export type ProductRepositoryInterface = {
-    list(): Promise<ProductDto[]>;
-    show(id: string): Promise<ProductDto | null>;
-    store(product: ProductDto): Promise<ProductDto>;
-    update(product: ProductDto, idProduct: string): Promise<ProductDto>;
+    list(): Promise<Product[]>;
+    show(id: string): Promise<Product | null>;
+    store(product: ProductDto): Promise<Product>;
+    update(product: ProductDto, idProduct: string): Promise<Product>;
 };

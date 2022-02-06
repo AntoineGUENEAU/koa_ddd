@@ -72,7 +72,8 @@ var UpdateProduct = /** @class */ (function () {
                     case 1:
                         productToUpdate = _a.sent();
                         newProduct = __assign(__assign(__assign({}, productToUpdate), productDto), { updated_at: new Date() });
-                        return [2 /*return*/, this.repository.update(newProduct, idProduct)];
+                        return [4 /*yield*/, this.repository.update(newProduct, idProduct)];
+                    case 2: return [2 /*return*/, (_a.sent()).toDto()];
                 }
             });
         });

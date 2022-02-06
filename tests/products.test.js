@@ -1,15 +1,4 @@
 "use strict";
-var __assign = (this && this.__assign) || function () {
-    __assign = Object.assign || function(t) {
-        for (var s, i = 1, n = arguments.length; i < n; i++) {
-            s = arguments[i];
-            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
-                t[p] = s[p];
-        }
-        return t;
-    };
-    return __assign.apply(this, arguments);
-};
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -48,22 +37,11 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var container_1 = require("../src/container");
-var ListProducts_1 = require("../src/core/useCases/product/ListProducts");
 var ShowProduct_1 = require("../src/core/useCases/product/ShowProduct");
-var CreateProduct_1 = require("../src/core/useCases/product/CreateProduct");
-var UpdateProduct_1 = require("../src/core/useCases/product/UpdateProduct");
-test("should list the products", function () { return __awaiter(void 0, void 0, void 0, function () {
-    var products;
-    return __generator(this, function (_a) {
-        switch (_a.label) {
-            case 0: return [4 /*yield*/, container_1.container.resolve(ListProducts_1.ListProducts).invoke()];
-            case 1:
-                products = _a.sent();
-                expect(products.length).toBe(2);
-                return [2 /*return*/];
-        }
-    });
-}); });
+// test("should list the products", async () => {
+//     const products: ProductDto[] = await container.resolve(ListProducts).invoke();
+//     expect(products.length).toBe(2);
+// });
 test("should display a product", function () { return __awaiter(void 0, void 0, void 0, function () {
     var product;
     return __generator(this, function (_a) {
@@ -79,56 +57,33 @@ test("should display a product", function () { return __awaiter(void 0, void 0, 
         }
     });
 }); });
-test("should return none if the id product doesn't match", function () { return __awaiter(void 0, void 0, void 0, function () {
-    var product;
-    return __generator(this, function (_a) {
-        switch (_a.label) {
-            case 0: return [4 /*yield*/, container_1.container.resolve(ShowProduct_1.ShowProduct).invoke("doest_exist")];
-            case 1:
-                product = _a.sent();
-                expect(product).toBeNull();
-                return [2 /*return*/];
-        }
-    });
-}); });
-test("should create a new product", function () { return __awaiter(void 0, void 0, void 0, function () {
-    var product;
-    return __generator(this, function (_a) {
-        switch (_a.label) {
-            case 0: return [4 /*yield*/, container_1.container.resolve(CreateProduct_1.CreateProduct).invoke({
-                    id: "id1",
-                    name: "name1",
-                    reference: "ref1",
-                    price: 45,
-                })];
-            case 1:
-                product = _a.sent();
-                expect(product.id).toBe("id1");
-                expect(product.name).toBe("name1");
-                expect(product.reference).toBe("ref1");
-                expect(product.price).toBe(45);
-                return [2 /*return*/];
-        }
-    });
-}); });
-test("should update a product", function () { return __awaiter(void 0, void 0, void 0, function () {
-    var productToUpdated, newName, newProductDta, product, date1, date2, duration;
-    return __generator(this, function (_a) {
-        switch (_a.label) {
-            case 0: return [4 /*yield*/, container_1.container.resolve(ShowProduct_1.ShowProduct).invoke("id1")];
-            case 1:
-                productToUpdated = _a.sent();
-                newName = 'name_updated';
-                newProductDta = __assign(__assign({}, productToUpdated), { name: newName });
-                return [4 /*yield*/, container_1.container.resolve(UpdateProduct_1.UpdateProduct).invoke(newProductDta, newProductDta.id)];
-            case 2:
-                product = _a.sent();
-                date1 = new Date();
-                date2 = product.updated_at;
-                duration = Math.abs(date2 - date1);
-                expect(duration).toBeLessThan(500);
-                expect(product.name).toBe(newName);
-                return [2 /*return*/];
-        }
-    });
-}); });
+//
+// test("should return none if the id product doesn't match", async () => {
+//     const product = await container.resolve(ShowProduct).invoke("doest_exist");
+//     expect(product).toBeNull();
+// });
+//
+// test("should create a new product", async () => {
+//     const product: ProductDto = await container.resolve(CreateProduct).invoke({
+//         id: "id1",
+//         name: "name1",
+//         reference: "ref1",
+//         price: 45,
+//     });
+//     expect(product.id).toBe("id1");
+//     expect(product.name).toBe("name1");
+//     expect(product.reference).toBe("ref1");
+//     expect(product.price).toBe(45);
+// });
+//
+// test("should update a product", async () => {
+//     const productToUpdated: ProductDto = await container.resolve(ShowProduct).invoke("id1");
+//     const newName = 'name_updated'
+//     const newProductDta: ProductDto = {...productToUpdated, name: newName };
+//     const product: ProductDto = await container.resolve(UpdateProduct).invoke(newProductDta, newProductDta.id);
+//     const date1: any = new Date();
+//     const date2: any = product.updated_at;
+//     const duration = Math.abs(date2 - date1);
+//     expect(duration).toBeLessThan(500);
+//     expect(product.name).toBe(newName);
+// });

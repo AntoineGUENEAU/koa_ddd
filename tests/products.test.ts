@@ -38,8 +38,8 @@ test("should create a new product", async () => {
 
 test("should update a product", async () => {
     const productToUpdated: ProductDto = await container.resolve(ShowProduct).invoke("id1");
-    const newName = 'name_updated'
-    const newProductDta: ProductDto = {...productToUpdated, name: newName };
+    const newName = "name_updated";
+    const newProductDta: ProductDto = { ...productToUpdated, name: newName };
     const product: ProductDto = await container.resolve(UpdateProduct).invoke(newProductDta, newProductDta.id);
     const date1: any = new Date();
     const date2: any = product.updated_at;

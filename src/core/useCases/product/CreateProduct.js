@@ -67,8 +67,12 @@ var CreateProduct = /** @class */ (function () {
         return __awaiter(this, void 0, void 0, function () {
             var newProduct;
             return __generator(this, function (_a) {
-                newProduct = __assign(__assign({}, productDto), { updated_at: new Date(), created_at: new Date() });
-                return [2 /*return*/, this.repository.store(newProduct)];
+                switch (_a.label) {
+                    case 0:
+                        newProduct = __assign(__assign({}, productDto), { updated_at: new Date(), created_at: new Date() });
+                        return [4 /*yield*/, this.repository.store(newProduct)];
+                    case 1: return [2 /*return*/, (_a.sent()).toDto()];
+                }
             });
         });
     };

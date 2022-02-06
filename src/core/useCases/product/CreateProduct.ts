@@ -1,4 +1,4 @@
-import { ProductDto } from "../../domain/product/product";
+import {ProductDto} from "../../domain/product/product";
 import "reflect-metadata";
 import { inject, injectable } from "inversify";
 import { TYPES } from "../../../types";
@@ -10,6 +10,6 @@ export class CreateProduct {
 
     public async invoke(productDto: ProductDto): Promise<ProductDto> {
         const newProduct = { ...productDto, updated_at: new Date(), created_at: new Date() } as ProductDto;
-        return this.repository.store(newProduct);
+        return (await this.repository.store(newProduct)).toDto();
     }
 }

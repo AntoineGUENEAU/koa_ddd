@@ -1,5 +1,5 @@
 import "reflect-metadata";
-import {Cart, CartDto} from "../../domain/cart/cart";
+import {Cart} from "../../domain/cart/cart";
 import {inject, injectable} from "inversify";
 import {TYPES} from "../../../types";
 import {CartRepositoryInterface} from "../../domain/cart/cartRepositoryInterface";

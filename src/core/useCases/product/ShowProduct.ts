@@ -8,7 +8,8 @@ import { ProductRepositoryInterface } from "../../domain/product/productReposito
 export class ShowProduct {
     @inject(TYPES.ProductRepositoryInterface) private repository: ProductRepositoryInterface;
 
-    public invoke(idProduct: string): Promise<ProductDto | null> {
-        return this.repository.show(idProduct);
+    public async invoke(idProduct: string): Promise<ProductDto> {
+        const product: Product = await this.repository.show(idProduct)
+        return product.toDto();
     }
 }
