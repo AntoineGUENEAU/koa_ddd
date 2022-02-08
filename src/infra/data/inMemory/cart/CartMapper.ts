@@ -1,4 +1,4 @@
-import {Cart, CartDto, CartLineDto} from "../../../../core/domain/cart/cart";
+import { Cart, CartDto, CartLineDto } from "../../../../core/domain/cart/Cart";
 
 const getProducts = (products: CartLineDto[]) => {
     return products.map((cartLine) => ({

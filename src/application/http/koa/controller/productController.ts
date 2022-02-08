@@ -1,5 +1,5 @@
-import { Product, ProductDto } from "../../../../core/domain/product/product";
 import { Context } from "koa";
+import { ProductDto } from "../../../../core/domain/product/Product";
 import { container } from "../../../../container";
 import { ListProducts } from "../../../../core/useCases/product/ListProducts";
 import { CreateProduct } from "../../../../core/useCases/product/CreateProduct";
@@ -7,7 +7,7 @@ import { UpdateProduct } from "../../../../core/useCases/product/UpdateProduct";
 import { ShowProduct } from "../../../../core/useCases/product/ShowProduct";
 
 export async function list(ctx: Context): Promise<void> {
-    ctx.body = { products: (await container.resolve(ListProducts).invoke()) as Product[] };
+    ctx.body = { products: (await container.resolve(ListProducts).invoke()) as ProductDto[] };
 }
 
 export async function show(ctx: Context): Promise<void> {

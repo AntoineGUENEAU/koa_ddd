@@ -36,8 +36,8 @@ var __spreadArray = (this && this.__spreadArray) || function (to, from, pack) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Cart = void 0;
-var product_1 = require("../product/product");
-var entity_1 = require("../entity");
+var Product_1 = require("../product/Product");
+var Entity_1 = require("../Entity");
 var Cart = /** @class */ (function (_super) {
     __extends(Cart, _super);
     function Cart(_a) {
@@ -65,7 +65,7 @@ var Cart = /** @class */ (function (_super) {
         },
         set: function (products) {
             this._products = products.map(function (p) { return ({
-                item: p.item instanceof product_1.Product ? p.item : product_1.Product.create(p.item),
+                item: p.item instanceof Product_1.Product ? p.item : Product_1.Product.create(p.item),
                 quantity: p.quantity,
             }); });
         },
@@ -92,5 +92,5 @@ var Cart = /** @class */ (function (_super) {
         this.products = __spreadArray(__spreadArray([], this.products, true), [{ item: item, quantity: quantity }], false);
     };
     return Cart;
-}(entity_1.Entity));
+}(Entity_1.Entity));
 exports.Cart = Cart;

@@ -1,3 +1,3 @@
 export interface ServerInterface {
-    start(): void;
+    startServer(): void;
 }

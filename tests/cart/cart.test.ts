@@ -1,7 +1,7 @@
-import { container } from "../src/container";
-import { CartDto } from "../src/core/domain/cart/cart";
-import { AddProductInACart } from "../src/core/useCases/cart/AddProductInACart";
-import { ProductDto } from "../src/core/domain/product/product";
+import { container } from "../../src/container";
+import { CartDto } from "../../src/core/domain/cart/Cart";
+import { AddProductInACart } from "../../src/core/useCases/cart/AddProductInACart";
+import { ProductDto } from "../../src/core/domain/product/Product";
 
 test("should add a product in a cart with a quantity of 1", async () => {
     const cart: CartDto = await container.resolve(AddProductInACart).invoke("1", getFakeProduct(), 1);

@@ -1,9 +1,9 @@
-import { ProductDto } from "../src/core/domain/product/product";
-import { container } from "../src/container";
-import { ListProducts } from "../src/core/useCases/product/ListProducts";
-import { ShowProduct } from "../src/core/useCases/product/ShowProduct";
-import { CreateProduct } from "../src/core/useCases/product/CreateProduct";
-import { UpdateProduct } from "../src/core/useCases/product/UpdateProduct";
+import { ProductDto } from "../../src/core/domain/product/Product";
+import { container } from "../../src/container";
+import { ListProducts } from "../../src/core/useCases/product/ListProducts";
+import { ShowProduct } from "../../src/core/useCases/product/ShowProduct";
+import { CreateProduct } from "../../src/core/useCases/product/CreateProduct";
+import { UpdateProduct } from "../../src/core/useCases/product/UpdateProduct";
 
 test("should list the products", async () => {
     const products: ProductDto[] = await container.resolve(ListProducts).invoke();

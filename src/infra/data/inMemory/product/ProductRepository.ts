@@ -1,9 +1,9 @@
-import {Product, ProductDto} from "../../../../core/domain/product/product";
 import "reflect-metadata";
-import { ProductRepositoryInterface } from "../../../../core/domain/product/productRepositoryInterface";
 import { injectable } from "inversify";
+import { Product, ProductDto } from "../../../../core/domain/product/Product";
+import { ProductRepositoryInterface } from "../../../../core/domain/product/ProductRepositoryInterface";
 
-const products = [
+const products: Product[] = [
     { id: "id1", reference: "ref1", name: "iphone", price: 34, updated_at: new Date(), created_at: new Date() } as Product,
     { id: "id2", reference: "ref2", name: "tv", price: 56, updated_at: new Date(), created_at: new Date() } as Product
 ];

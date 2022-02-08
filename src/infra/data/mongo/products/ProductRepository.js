@@ -1,12 +1,20 @@
 "use strict";
+var __assign = (this && this.__assign) || function () {
+    __assign = Object.assign || function(t) {
+        for (var s, i = 1, n = arguments.length; i < n; i++) {
+            s = arguments[i];
+            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
+                t[p] = s[p];
+        }
+        return t;
+    };
+    return __assign.apply(this, arguments);
+};
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
@@ -45,68 +53,73 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.CartRepository = void 0;
+exports.ProductRepository = void 0;
+require("reflect-metadata");
+var dbConnection_1 = require("../dbConnection");
+var Product_1 = require("./Product");
 var inversify_1 = require("inversify");
-var memory_data_1 = require("../memory-data");
-var types_1 = require("../../../../types");
-var cartMapper_1 = require("./cartMapper");
-var errorsNotFound_1 = require("../../../../errors/errorsNotFound");
-var CartRepository = /** @class */ (function () {
-    function CartRepository() {
+var ProductRepository = /** @class */ (function () {
+    function ProductRepository() {
     }
-    CartRepository.prototype.getById = function (id) {
+    ProductRepository.prototype.list = function () {
         return __awaiter(this, void 0, void 0, function () {
-            var cart;
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, this._database.cart.getById(id)];
+                    case 0: return [4 /*yield*/, (0, dbConnection_1.default)()];
                     case 1:
-                        cart = _a.sent();
-                        if (!cart) {
-                            throw new errorsNotFound_1.ResourceNotFound('Cart', { id: id });
-                        }
-                        return [2 /*return*/, cartMapper_1.CartMapper.toDomain(cart)];
+                        _a.sent();
+                        return [2 /*return*/, Product_1.ProductMongo.find()];
                 }
             });
         });
     };
-    CartRepository.prototype.create = function (cart) {
+    ProductRepository.prototype.show = function (id) {
+        var _a;
         return __awaiter(this, void 0, void 0, function () {
-            var dtoCart, inserted;
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0:
-                        dtoCart = cart.toDto();
-                        return [4 /*yield*/, this._database.cart.insert(dtoCart)];
+            return __generator(this, function (_b) {
+                switch (_b.label) {
+                    case 0: return [4 /*yield*/, (0, dbConnection_1.default)()];
                     case 1:
-                        inserted = _a.sent();
-                        return [2 /*return*/, cartMapper_1.CartMapper.toDomain(inserted)];
+                        _b.sent();
+                        return [2 /*return*/, (_a = Product_1.ProductMongo.find({ id: id })[0]) !== null && _a !== void 0 ? _a : null];
                 }
             });
         });
     };
-    CartRepository.prototype.update = function (cart) {
+    ProductRepository.prototype.store = function (product) {
         return __awaiter(this, void 0, void 0, function () {
-            var dtoCart, updated;
+            var question;
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0:
-                        dtoCart = cart.toDto();
-                        return [4 /*yield*/, this._database.cart.update(cart.id, dtoCart)];
+                    case 0: return [4 /*yield*/, (0, dbConnection_1.default)()];
                     case 1:
-                        updated = _a.sent();
-                        return [2 /*return*/, cartMapper_1.CartMapper.toDomain(updated)];
+                        _a.sent();
+                        question = new Product_1.ProductMongo(product);
+                        return [4 /*yield*/, question.save()];
+                    case 2: return [2 /*return*/, _a.sent()];
                 }
             });
         });
     };
-    __decorate([
-        (0, inversify_1.inject)(types_1.TYPES.Database),
-        __metadata("design:type", memory_data_1.MemoryData)
-    ], CartRepository.prototype, "_database", void 0);
-    CartRepository = __decorate([
+    // TODO Bug ici, ca va crée un nouveau produit, a voir dans le doc de mongoDB comme il faut faire.
+    ProductRepository.prototype.update = function (product, idProduct) {
+        return __awaiter(this, void 0, void 0, function () {
+            var question;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, (0, dbConnection_1.default)()];
+                    case 1:
+                        _a.sent();
+                        question = new Product_1.ProductMongo(__assign({}, product));
+                        return [4 /*yield*/, question.save()];
+                    case 2: return [2 /*return*/, _a.sent()];
+                }
+            });
+        });
+    };
+    ProductRepository = __decorate([
         (0, inversify_1.injectable)()
-    ], CartRepository);
-    return CartRepository;
+    ], ProductRepository);
+    return ProductRepository;
 }());
-exports.CartRepository = CartRepository;
+exports.ProductRepository = ProductRepository;

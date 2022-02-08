@@ -1,15 +1,12 @@
 import "reflect-metadata";
-import {ProductDto} from "../../domain/product/product";
-import { inject, injectable } from "inversify";
-import { TYPES } from "../../../types";
-import { ProductRepositoryInterface } from "../../domain/product/productRepositoryInterface";
+import {Product, ProductDto} from "../../domain/product/Product";
+import { injectable } from "inversify";
+import {AbstractProduct} from "./AbstractProduct";
 
 @injectable()
-export class ListProducts {
-    @inject(TYPES.ProductRepositoryInterface) private repository: ProductRepositoryInterface;
-
+export class ListProducts extends AbstractProduct{
     public async invoke(): Promise<ProductDto[]> {
-        return (await this.repository.list()).map((product) => {
+        return (await this.repository.list()).map((product: Product) => {
             return product.toDto()
         });
     }

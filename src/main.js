@@ -43,6 +43,7 @@ var start = function () { return __awaiter(void 0, void 0, void 0, function () {
     var server;
     return __generator(this, function (_a) {
         server = container_1.container.get(types_1.TYPES.ServerInterface);
+        console.log(server);
         return [2 /*return*/, server.start()];
     });
 }); };

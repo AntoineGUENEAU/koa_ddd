@@ -15,68 +15,67 @@ var __extends = (this && this.__extends) || (function () {
     };
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.Product = void 0;
-var entity_1 = require("../entity");
-var Product = /** @class */ (function (_super) {
-    __extends(Product, _super);
-    function Product(props) {
+exports.User = void 0;
+var Entity_1 = require("../Entity");
+var User = /** @class */ (function (_super) {
+    __extends(User, _super);
+    function User(props) {
         return _super.call(this, props, props.id) || this;
     }
-    Product.create = function (props) {
-        return new Product(props);
+    User.create = function (props) {
+        return new User(props);
     };
-    Product.prototype.toDto = function () {
+    User.prototype.toDto = function () {
         return {
             id: this.id,
-            reference: this.reference,
-            name: this.name,
-            price: this.price,
-            updated_at: this.updated_at,
-            created_at: this.created_at,
+            login: this.login,
+            firstname: this.firstname,
+            lastname: this.lastname,
+            email: this.email
         };
     };
-    Object.defineProperty(Product.prototype, "id", {
+    Object.defineProperty(User.prototype, "id", {
         get: function () {
             return this._id;
         },
         enumerable: false,
         configurable: true
     });
-    Object.defineProperty(Product.prototype, "reference", {
+    Object.defineProperty(User.prototype, "firstname", {
         get: function () {
-            return this.props.reference;
+            return this.props.firstname;
         },
         enumerable: false,
         configurable: true
     });
-    Object.defineProperty(Product.prototype, "name", {
+    Object.defineProperty(User.prototype, "lastname", {
         get: function () {
-            return this.props.name;
+            return this.props.lastname;
         },
         enumerable: false,
         configurable: true
     });
-    Object.defineProperty(Product.prototype, "price", {
+    Object.defineProperty(User.prototype, "login", {
         get: function () {
-            return this.props.price;
+            return this.props.login;
         },
         enumerable: false,
         configurable: true
     });
-    Object.defineProperty(Product.prototype, "updated_at", {
+    Object.defineProperty(User.prototype, "email", {
         get: function () {
-            return this.props.updated_at;
+            return this.props.email;
         },
         enumerable: false,
         configurable: true
     });
-    Object.defineProperty(Product.prototype, "created_at", {
+    Object.defineProperty(User.prototype, "password", {
         get: function () {
-            return this.props.created_at;
+            return this.props.password;
         },
         enumerable: false,
         configurable: true
     });
-    return Product;
-}(entity_1.Entity));
-exports.Product = Product;
+    return User;
+}(Entity_1.Entity));
+exports.User = User;

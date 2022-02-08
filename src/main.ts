@@ -5,7 +5,8 @@ import { ServerInterface } from "./application/http/ServerInterface";
 
 const start = async (): Promise<void> => {
     const server: ServerInterface = container.get<ServerInterface>(TYPES.ServerInterface);
-    return server.start();
+    console.log(server); // TODO Bug ici au niveau de l'injection du Service Server corespondand au ServeurInterface
+    return server.startServer();
 };
 
 start();

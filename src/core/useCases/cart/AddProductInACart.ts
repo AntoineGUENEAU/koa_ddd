@@ -1,8 +1,8 @@
 import "reflect-metadata";
-import {injectable} from "inversify";
-import {CartDto} from "../../domain/cart/cart";
-import {ProductDto} from "../../domain/product/product";
-import {AbstractCart} from "./AbstractCart";
+import { injectable } from "inversify";
+import { CartDto } from "../../domain/cart/Cart";
+import { ProductDto } from "../../domain/product/Product";
+import { AbstractCart } from "./AbstractCart";
 
 @injectable()
 export class AddProductInACart extends AbstractCart {

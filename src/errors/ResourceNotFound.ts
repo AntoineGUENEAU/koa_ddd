@@ -1,4 +1,4 @@
-import { ExtendableError } from "./genericError";
+import { ExtendableError } from "./ExtendableError";
 
 export class ResourceNotFound extends ExtendableError {
     data: Record<string, unknown>;

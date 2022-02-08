@@ -1,6 +1,6 @@
-import {Cart} from "./cart";
+import {Cart} from "./Cart";
 
-export type CartRepositoryInterface = {
+export interface CartRepositoryInterface {
     getById(id: string): Promise<Cart>
     create(cart: Cart): Promise<Cart>
     update(cart: Cart): Promise<Cart>

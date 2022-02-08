@@ -36,54 +36,39 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var container_1 = require("../src/container");
-var ShowProduct_1 = require("../src/core/useCases/product/ShowProduct");
-// test("should list the products", async () => {
-//     const products: ProductDto[] = await container.resolve(ListProducts).invoke();
-//     expect(products.length).toBe(2);
-// });
-test("should display a product", function () { return __awaiter(void 0, void 0, void 0, function () {
-    var product;
+var container_1 = require("../../src/container");
+var AddProductInACart_1 = require("../../src/core/useCases/cart/AddProductInACart");
+test("should add a product in a cart with a quantity of 1", function () { return __awaiter(void 0, void 0, void 0, function () {
+    var cart;
     return __generator(this, function (_a) {
         switch (_a.label) {
-            case 0: return [4 /*yield*/, container_1.container.resolve(ShowProduct_1.ShowProduct).invoke("id2")];
+            case 0: return [4 /*yield*/, container_1.container.resolve(AddProductInACart_1.AddProductInACart).invoke("1", getFakeProduct(), 1)];
             case 1:
-                product = _a.sent();
-                expect(product.id).toBe("id2");
-                expect(product.name).toBe("tv");
-                expect(product.reference).toBe("ref2");
-                expect(product.price).toBe(56);
+                cart = _a.sent();
+                expect(cart.items.length).toBe(1);
                 return [2 /*return*/];
         }
     });
 }); });
-//
-// test("should return none if the id product doesn't match", async () => {
-//     const product = await container.resolve(ShowProduct).invoke("doest_exist");
-//     expect(product).toBeNull();
-// });
-//
-// test("should create a new product", async () => {
-//     const product: ProductDto = await container.resolve(CreateProduct).invoke({
-//         id: "id1",
-//         name: "name1",
-//         reference: "ref1",
-//         price: 45,
-//     });
-//     expect(product.id).toBe("id1");
-//     expect(product.name).toBe("name1");
-//     expect(product.reference).toBe("ref1");
-//     expect(product.price).toBe(45);
-// });
-//
-// test("should update a product", async () => {
-//     const productToUpdated: ProductDto = await container.resolve(ShowProduct).invoke("id1");
-//     const newName = 'name_updated'
-//     const newProductDta: ProductDto = {...productToUpdated, name: newName };
-//     const product: ProductDto = await container.resolve(UpdateProduct).invoke(newProductDta, newProductDta.id);
-//     const date1: any = new Date();
-//     const date2: any = product.updated_at;
-//     const duration = Math.abs(date2 - date1);
-//     expect(duration).toBeLessThan(500);
-//     expect(product.name).toBe(newName);
-// });
+test("should add a product in a cart with a quantity of 2", function () { return __awaiter(void 0, void 0, void 0, function () {
+    var cart;
+    return __generator(this, function (_a) {
+        switch (_a.label) {
+            case 0: return [4 /*yield*/, container_1.container.resolve(AddProductInACart_1.AddProductInACart).invoke("1", getFakeProduct(), 2)];
+            case 1:
+                cart = _a.sent();
+                expect(cart.items.length).toBe(2);
+                return [2 /*return*/];
+        }
+    });
+}); });
+function getFakeProduct() {
+    return {
+        id: "idFake",
+        name: "nameFake",
+        reference: "refFake",
+        price: 678,
+        updated_at: new Date(),
+        created_at: new Date(),
+    };
+}

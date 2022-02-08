@@ -1,13 +1,10 @@
-import { Product, ProductDto } from "../../domain/product/product";
+import { Product, ProductDto } from "../../domain/product/Product";
 import "reflect-metadata";
-import { inject, injectable } from "inversify";
-import { TYPES } from "../../../types";
-import { ProductRepositoryInterface } from "../../domain/product/productRepositoryInterface";
+import  { injectable } from "inversify";
+import {AbstractProduct} from "./AbstractProduct";
 
 @injectable()
-export class UpdateProduct {
-    @inject(TYPES.ProductRepositoryInterface) private repository: ProductRepositoryInterface;
-
+export class UpdateProduct extends AbstractProduct{
     public async invoke(productDto: ProductDto, idProduct: string): Promise<ProductDto> {
         const productToUpdate: ProductDto = await this.repository.show(idProduct);
         const newProduct = { ...productToUpdate, ...productDto, updated_at: new Date() } as Product;

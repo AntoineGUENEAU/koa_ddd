@@ -1,5 +1,5 @@
-import {Product, ProductDto} from "../product/product";
-import {Entity} from "../entity";
+import {Product, ProductDto} from "../product/Product";
+import {Entity} from "../Entity";
 
 export interface CartLine {
     item: Product

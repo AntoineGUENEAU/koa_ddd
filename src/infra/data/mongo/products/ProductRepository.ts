@@ -1,8 +1,8 @@
-import { Product } from "../../../../core/domain/product/product";
+import { Product } from "../../../../core/domain/product/Product";
 import "reflect-metadata";
 import connection from "../dbConnection";
-import { ProductMongo } from "./product";
-import { ProductRepositoryInterface } from "../../../../core/domain/product/productRepositoryInterface";
+import { ProductMongo } from "./Product";
+import { ProductRepositoryInterface } from "../../../../core/domain/product/ProductRepositoryInterface";
 import { injectable } from "inversify";
 
 @injectable()

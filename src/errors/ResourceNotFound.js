@@ -16,7 +16,7 @@ var __extends = (this && this.__extends) || (function () {
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.ResourceNotFound = void 0;
-var genericError_1 = require("./genericError");
+var ExtendableError_1 = require("./ExtendableError");
 var ResourceNotFound = /** @class */ (function (_super) {
     __extends(ResourceNotFound, _super);
     function ResourceNotFound(resource, query) {
@@ -25,5 +25,5 @@ var ResourceNotFound = /** @class */ (function (_super) {
         return _this;
     }
     return ResourceNotFound;
-}(genericError_1.ExtendableError));
+}(ExtendableError_1.ExtendableError));
 exports.ResourceNotFound = ResourceNotFound;

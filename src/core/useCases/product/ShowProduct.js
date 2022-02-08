@@ -1,12 +1,24 @@
 "use strict";
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = function (d, b) {
+        extendStatics = Object.setPrototypeOf ||
+            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+            function (d, b) { for (var p in b) if (Object.prototype.hasOwnProperty.call(b, p)) d[p] = b[p]; };
+        return extendStatics(d, b);
+    };
+    return function (d, b) {
+        if (typeof b !== "function" && b !== null)
+            throw new TypeError("Class extends value " + String(b) + " is not a constructor or null");
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
@@ -48,9 +60,11 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.ShowProduct = void 0;
 require("reflect-metadata");
 var inversify_1 = require("inversify");
-var types_1 = require("../../../types");
-var ShowProduct = /** @class */ (function () {
+var AbstractProduct_1 = require("./AbstractProduct");
+var ShowProduct = /** @class */ (function (_super) {
+    __extends(ShowProduct, _super);
     function ShowProduct() {
+        return _super !== null && _super.apply(this, arguments) || this;
     }
     ShowProduct.prototype.invoke = function (idProduct) {
         return __awaiter(this, void 0, void 0, function () {
@@ -65,13 +79,9 @@ var ShowProduct = /** @class */ (function () {
             });
         });
     };
-    __decorate([
-        (0, inversify_1.inject)(types_1.TYPES.ProductRepositoryInterface),
-        __metadata("design:type", Object)
-    ], ShowProduct.prototype, "repository", void 0);
     ShowProduct = __decorate([
         (0, inversify_1.injectable)()
     ], ShowProduct);
     return ShowProduct;
-}());
+}(AbstractProduct_1.AbstractProduct));
 exports.ShowProduct = ShowProduct;

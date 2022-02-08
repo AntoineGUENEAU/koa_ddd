@@ -15,12 +15,18 @@ var koaBody = require("koa-body");
 var validate = require("koa-validation");
 var Koa = require("koa");
 var app = (module.exports = new Koa());
+var session = require('koa-session');
+var passport = require('koa-passport');
 var KoaServer = /** @class */ (function () {
     function KoaServer() {
     }
     KoaServer.prototype.start = function () {
+        app.keys = ['super-secret-key'];
+        app.use(session(app));
         app.use(logger());
         app.use(koaBody());
+        app.use(passport.initialize());
+        app.use(passport.session());
         app.use(validate());
         app.use(productsRoutes_1.router.routes());
         app.listen(3000);

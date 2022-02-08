@@ -1,8 +1,8 @@
 import "reflect-metadata";
-import {Cart} from "../../domain/cart/cart";
-import {inject, injectable} from "inversify";
-import {TYPES} from "../../../types";
-import {CartRepositoryInterface} from "../../domain/cart/cartRepositoryInterface";
+import { Cart } from "../../domain/cart/Cart";
+import { inject, injectable } from "inversify";
+import { TYPES } from "../../../types";
+import { CartRepositoryInterface } from "../../domain/cart/CartRepositoryInterface";
 
 @injectable()
 export abstract class AbstractCart {

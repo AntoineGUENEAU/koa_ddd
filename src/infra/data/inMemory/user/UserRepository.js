@@ -1,4 +1,10 @@
 "use strict";
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -36,39 +42,41 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var container_1 = require("../src/container");
-var AddProductInACart_1 = require("../src/core/useCases/cart/AddProductInACart");
-test("should add a product in a cart with a quantity of 1", function () { return __awaiter(void 0, void 0, void 0, function () {
-    var cart;
-    return __generator(this, function (_a) {
-        switch (_a.label) {
-            case 0: return [4 /*yield*/, container_1.container.resolve(AddProductInACart_1.AddProductInACart).invoke('1', getFakeProduct(), 1)];
-            case 1:
-                cart = _a.sent();
-                expect(cart.items.length).toBe(1);
-                return [2 /*return*/];
-        }
-    });
-}); });
-test("should add a product in a cart with a quantity of 2", function () { return __awaiter(void 0, void 0, void 0, function () {
-    var cart;
-    return __generator(this, function (_a) {
-        switch (_a.label) {
-            case 0: return [4 /*yield*/, container_1.container.resolve(AddProductInACart_1.AddProductInACart).invoke('1', getFakeProduct(), 2)];
-            case 1:
-                cart = _a.sent();
-                expect(cart.items.length).toBe(2);
-                return [2 /*return*/];
-        }
-    });
-}); });
-function getFakeProduct() {
-    return {
-        id: "idFake",
-        name: "nameFake",
-        reference: "refFake",
-        price: 678,
-        updated_at: new Date(),
-        created_at: new Date(),
+exports.UserRepository = void 0;
+require("reflect-metadata");
+var inversify_1 = require("inversify");
+var users = [
+    {
+        id: "id_1",
+        firstname: "Antoine",
+        lastname: "GUENEAU",
+        login: "gueneau.antoine@gmail.com",
+        password: 'test'
+    },
+    {
+        id: "id_2",
+        firstname: "Jean",
+        lastname: "DURAND",
+        login: "j.durand@gmail.com",
+        password: 'test2'
+    }
+];
+var UserRepository = /** @class */ (function () {
+    function UserRepository() {
+    }
+    UserRepository.prototype.getByLogin = function (login) {
+        return __awaiter(this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, users.find(function (user) { return user.login === login; })];
+                    case 1: return [2 /*return*/, _a.sent()];
+                }
+            });
+        });
     };
-}
+    UserRepository = __decorate([
+        (0, inversify_1.injectable)()
+    ], UserRepository);
+    return UserRepository;
+}());
+exports.UserRepository = UserRepository;
